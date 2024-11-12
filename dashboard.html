@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ward Data Analysis</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 18cm;
+            height: 18cm;
+            background: url('c:/Users/pawan/Desktop/logo1.jpg') center center/contain no-repeat;
+            opacity: 0.1;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .container {
+            width: 800px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, rgba(240, 147, 251, 0.5), rgba(79, 172, 254, 0.5));
+            z-index: -1;
+            filter: blur(35px);
+        }
+
+        h1, h2 {
+            margin: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 22px;
+            margin-bottom: 40px;
+        }
+
+        .chart-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+
+        .bar {
+            width: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .bar div {
+            width: 100%;
+            background-color: #f5576c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .bar span {
+            margin-top: 5px;
+            color: #333;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .bar:nth-child(2) div { background-color: #4b8cd1; }
+        .bar:nth-child(3) div { background-color: #7dbd6f; }
+        .bar:nth-child(4) div { background-color: #ffcc00; }
+        .bar:nth-child(5) div { background-color: #ff6f61; }
+        .bar:nth-child(6) div { background-color: #a474e2; }
+
+        .exit-button {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #f5576c;
+            background-image: linear-gradient(315deg, #f093fb 0%, #f5576c 74%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .exit-button:hover {
+            background-color: #ff9a9e;
+            background-image: linear-gradient(315deg, #e94e77 0%, #f5576c 74%);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Ward Number 1</h1>
+        <h2>Data Analysis</h2>
+        <div class="chart-container">
+            <div class="bar" style="height: 80%; background: #f093fb;"><div>200</div><span>Health</span></div>
+            <div class="bar" style="height: 60%; background: #f5576c;"><div>180</div><span>Sanitation</span></div>
+            <div class="bar" style="height: 70%; background: #79c8f3;"><div>220</div><span>Water</span></div>
+            <div class="bar" style="height: 50%; background: #a4d7e1;"><div>160</div><span>Public Infrastructure</span></div>
+            <div class="bar" style="height: 90%; background: #a6e5d1;"><div>140</div><span>Property Tax</span></div>
+        </div>
+        <div>Concerns Received</div>
+    </div>
+
+    <button class="exit-button" onclick="exitPage()">Exit</button>
+
+    <script>
+        function exitPage() {
+            window.location.href = 'Pro1.html';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Concern</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 18cm;
+            height: 18cm;
+            background: url('c:/Users/pawan/Desktop/logo1.jpg') center center/contain no-repeat;
+            opacity: 0.1;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        .container {
+            width: 350px;
+            padding: 40px 30px 60px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            box-shadow: 0px 12px 35px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            transform: translateY(-20px);
+            animation: fadeIn 0.6s forwards ease-in-out;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, rgba(240, 147, 251, 0.5), rgba(79, 172, 254, 0.5));
+            z-index: -1;
+            filter: blur(35px);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #fff;
+            transition: border-color 0.3s ease;
+            margin-bottom: 20px;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            border-color: #f093fb;
+            outline: none;
+        }
+
+        .file-input-group {
+            margin-bottom: 30px;
+        }
+
+        .file-input-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .file-input-group input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #fff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #f5576c;
+            background-image: linear-gradient(315deg, #f093fb 0%, #f5576c 74%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #ff9a9e;
+            background-image: linear-gradient(315deg, #e94e77 0%, #f5576c 74%);
+        }
+
+        @keyframes fadeIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .container {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Submit Your Concern</h2>
+        <textarea placeholder="Write your Concern"></textarea>
+
+        <div class="file-input-group">
+            <label for="file-upload">Attach Files/Pictures:</label>
+            <input type="file" id="file-upload" multiple>
+        </div>
+
+        <button onclick="submitConcern()">Submit</button>
+        <button onclick="viewAnalysis()">View Analysis</button>
+    </div>
+
+    <script>
+        function submitConcern() {
+            //
+            alert('Concern submitted!');
+        }
+
+        function viewAnalysis() {
+            //
+            alert('Viewing analysis!');
+        }
+    </script>
+
+</body>
+</html>

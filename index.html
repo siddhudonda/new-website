@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Submission</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #f093fb, #f5576c);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            width: 400px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #f5576c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #e94e77;
+        }
+
+        .thank-you-message {
+            display: none;
+            margin-top: 20px;
+            color: #28a745;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Form -->
+    <div class="container" id="login-container">
+        <h2>Login</h2>
+        <div class="form-group">
+            <label for="login-mobile">Mobile Number or Aadhaar</label>
+            <input type="number" id="login-mobile" placeholder="Enter Mobile or Aadhaar">
+        </div>
+        <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="Enter Password">
+        </div>
+        <button onclick="login()">Login</button>
+    </div>
+
+    <!-- Ward and Parameter Form (Visible after Login) -->
+    <div class="container hidden" id="ward-parameter-container">
+        <h2>Select Your Ward and Parameter</h2>
+        <div class="form-group">
+            <label for="ward-select">Select Ward</label>
+            <select id="ward-select">
+                <option value="" disabled selected>Select Ward</option>
+                <option value="ward1">Ward 1</option>
+                <option value="ward2">Ward 2</option>
+                <option value="ward3">Ward 3</option>
+                <option value="ward4">Ward 4</option>
+                <option value="ward5">Ward 5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="parameter-select">Select Parameter</label>
+            <select id="parameter-select">
+                <option value="" disabled selected>Select Parameter</option>
+                <option value="Health">Health</option>
+                <option value="Sanitation">Sanitation</option>
+                <option value="Public Infrastructure">Public Infrastructure</option>
+                <option value="Water">Water</option>
+                <option value="Property Tax">Property Tax</option>
+            </select>
+        </div>
+        <button onclick="navigateToModelSelection()">Next</button>
+    </div>
+
+    <!-- Select Model (Complaint, Suggestion, Opinion, Data Dashboards) -->
+    <div class="container hidden" id="model-selection-container">
+        <h2>Select Your Model</h2>
+        <div class="form-group">
+            <label for="model-select">Choose Model</label>
+            <select id="model-select" onchange="navigateToForm()">
+                <option value="" disabled selected>Select your model</option>
+                <option value="Complaint">Complaint</option>
+                <option value="Suggestion">Suggestion</option>
+                <option value="Opinion">Opinion</option>
+                <option value="Data Dashboards">Data Dashboards</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Complaint Form -->
+    <div class="container hidden" id="complaint-form-container">
+        <h2>Complaint Form</h2>
+        <form id="complaintForm">
+            <label for="complaint">Enter your complaint:</label>
+            <textarea id="complaint" rows="5" required></textarea>
+            <br>
+            <button type="submit">Submit Complaint</button>
+        </form>
+        <div id="thankYouMessage" class="thank-you-message">Thank you for your response!</div>
+    </div>
+
+    <!-- Suggestion Form -->
+    <div class="container hidden" id="suggestion-form-container">
+        <h2>Submit Your Suggestion</h2>
+        <form id="suggestionForm">
+            <label for="suggestion">Enter your suggestion:</label>
+            <textarea id="suggestion" rows="5" required></textarea>
+            <br>
+            <button type="submit">Submit Suggestion</button>
+        </form>
+        <div id="thankYouSuggestionMessage" class="thank-you-message">Thank you for your suggestion!</div>
+    </div>
+
+    <!-- Opinion Form -->
+    <div class="container hidden" id="opinion-form-container">
+        <h2>Submit Your Opinion</h2>
+        <form id="opinionForm">
+            <label for="opinion">Enter your opinion:</label>
+            <textarea id="opinion" rows="5" required></textarea>
+            <br>
+            <button type="submit">Submit Opinion</button>
+        </form>
+        <div id="thankYouOpinionMessage" class="thank-you-message">Thank you for your opinion!</div>
+    </div>
+
+    <script>
+        // Login Function
+        function login() {
+            var mobile = document.getElementById('login-mobile').value;
+            var password = document.getElementById('login-password').value;
+            if (mobile && password) {
+                document.getElementById('login-container').classList.add('hidden');
+                document.getElementById('ward-parameter-container').classList.remove('hidden');
+            } else {
+                alert("Please enter both mobile number and password.");
+            }
+        }
+
+        // Navigate to the model selection page
+        function navigateToModelSelection() {
+            var ward = document.getElementById('ward-select').value;
+            var parameter = document.getElementById('parameter-select').value;
+            if (ward && parameter) {
+                document.getElementById('ward-parameter-container').classList.add('hidden');
+                document.getElementById('model-selection-container').classList.remove('hidden');
+            } else {
+                alert("Please select both Ward and Parameter.");
+            }
+        }
+
+        // Navigate to the appropriate form after selecting a model
+        function navigateToForm() {
+            var model = document.getElementById('model-select').value;
+            if (model === "Complaint") {
+                document.getElementById('model-selection-container').classList.add('hidden');
+                document.getElementById('complaint-form-container').classList.remove('hidden');
+            } else if (model === "Suggestion") {
+                document.getElementById('model-selection-container').classList.add('hidden');
+                document.getElementById('suggestion-form-container').classList.remove('hidden');
+            } else if (model === "Opinion") {
+                document.getElementById('model-selection-container').classList.add('hidden');
+                document.getElementById('opinion-form-container').classList.remove('hidden');
+            } else if (model === "Data Dashboards") {
+                // Navigate to Data Dashboards page
+                window.location.href = "dashboard.html?ward=" + document.getElementById('ward-select').value;
+            }
+        }
+
+        // Handle Complaint form submission
+        document.getElementById('complaintForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const complaint = document.getElementById('complaint').value.trim();
+            if (complaint) {
+                document.getElementById('thankYouMessage').style.display = 'block';
+                setTimeout(function() {
+                    window.location.href = "nextcomplaintpage.html"; // Redirect to the next page
+                }, 2000); // Redirect after 2 seconds
+            } else {
+                alert("Please enter a complaint.");
+            }
+        });
+
+        // Handle Suggestion form submission
+        document.getElementById('suggestionForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const suggestion = document.getElementById('suggestion').value.trim();
+            if (suggestion) {
+                document.getElementById('thankYouSuggestionMessage').style.display = 'block';
+                setTimeout(function() {
+                    window.location.href = "nextsuggestionpage.html"; // Redirect to the next page
+                }, 2000); // Redirect after 2 seconds
+            } else {
+                alert("Please enter a suggestion.");
+            }
+        });
+
+        // Handle Opinion form submission
+        document.getElementById('opinionForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const opinion = document.getElementById('opinion').value.trim();
+            if (opinion) {
+                document.getElementById('thankYouOpinionMessage').style.display = 'block';
+                setTimeout(function() {
+                    window.location.href = "nextopinionpage.html"; // Redirect to the next page
+                }, 2000); // Redirect after 2 seconds
+            } else {
+                alert("Please enter an opinion.");
+            }
+        });
+    </script>
+
+</body>
+</html>
